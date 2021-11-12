@@ -54,6 +54,7 @@ getColors().then(colors => {
 
         const span = document.createElement('span');
         span.className = 'span-nome-cor';
+        span.style.backgroundColor = arr[i].hexadecimal;
         span.innerHTML = arr[i].nome;
         div.appendChild(span);
 
@@ -71,6 +72,17 @@ getColors().then(colors => {
     document.querySelectorAll('.span-nome-cor').forEach(function (element) {
         element.addEventListener('click', function () {
             // escolha do usuário
+            if (element.textContent === localStorage.getItem('corEscolhidaPelaMaquina')) {
+                alert('Parabéns, você acertou!');
+                document.getElementById('body').style.backgroundColor = element.style.backgroundColor;
+            } else {
+                let tamanho = element.textContent > localStorage.getItem('corEscolhidaPelaMaquina') ? 'maior' : 'menor';
+                alert(
+                    'Você errou!\n' +
+                    `Dica: Sua cor é alfabéticamente ${tamanho} que a minha!\n` +
+                    'Tente novamente!'
+                );
+            }
         });
     });
 
