@@ -77,7 +77,9 @@ getColors().then(colors => {
             if (element.textContent === localStorage.getItem('corEscolhidaPelaMaquina')) {
                 alert('Parabéns, você acertou!');
                 document.getElementById('body').style.backgroundColor = element.style.backgroundColor;
-                acertou = true;
+                setTimeout(() => {
+                    window.location.reload();
+                }, 3000);
             } else {
                 qtdVidas--;
                 let tamanho = element.textContent > localStorage.getItem('corEscolhidaPelaMaquina') ? 'maior' : 'menor';
