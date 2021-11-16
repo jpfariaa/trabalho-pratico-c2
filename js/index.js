@@ -65,8 +65,9 @@ getColors().then(colors => {
         const j = Math.floor(Math.random() * (i + 1));
         [escolhidos[i], escolhidos[j]] = [escolhidos[j], escolhidos[i]];
     }
+
+    // armazenando a cor aleatória no localStorage
     localStorage.setItem('corEscolhidaPelaMaquina', escolhidos.values().next().value.nome);
-    console.log(localStorage.getItem('corEscolhidaPelaMaquina'));
 
     // Ação de clique que vai validar a cor escolhida pelo usuário
     var qtdVidas = 4;
@@ -91,10 +92,8 @@ getColors().then(colors => {
                     );
                 }
             }
-
         });
     });
-
 }).catch(err => {
     console.log(`Erro: ${err}`);
 });
