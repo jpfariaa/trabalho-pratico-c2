@@ -69,20 +69,29 @@ getColors().then(colors => {
     console.log(localStorage.getItem('corEscolhidaPelaMaquina'));
 
     // Ação de clique que vai validar a cor escolhida pelo usuário
+    var qtdVidas = 4;
     document.querySelectorAll('.span-nome-cor').forEach(function (element) {
         element.addEventListener('click', function () {
             // escolha do usuário
             if (element.textContent === localStorage.getItem('corEscolhidaPelaMaquina')) {
                 alert('Parabéns, você acertou!');
                 document.getElementById('body').style.backgroundColor = element.style.backgroundColor;
+                acertou = true;
             } else {
+                qtdVidas--;
                 let tamanho = element.textContent > localStorage.getItem('corEscolhidaPelaMaquina') ? 'maior' : 'menor';
-                alert(
-                    'Você errou!\n' +
-                    `Dica: Sua cor é alfabéticamente ${tamanho} que a minha!\n` +
-                    'Tente novamente!'
-                );
+                if (qtdVidas === 0) {
+                    alert('Sinto muito, mas você perdeu...');
+                    window.close();
+                } else {
+                    alert(
+                        'Você errou!\n' +
+                        `Dica: Sua cor é alfabéticamente ${tamanho} que a minha!\n\n` +
+                        `Você ainda tem ${qtdVidas} ${qtdVidas > 1 ? 'vidas' : 'vida'}`
+                    );
+                }
             }
+
         });
     });
 
