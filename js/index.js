@@ -68,24 +68,32 @@ getColors().then(colors => {
 
     // armazenando a cor aleatória no localStorage
     localStorage.setItem('corEscolhidaPelaMaquina', escolhidos.values().next().value.nome);
+    console.log(`%c ________________________________________
+    < mooooooo I love ${localStorage.getItem('corEscolhidaPelaMaquina')} >
+ ----------------------------------------
+        \\   ^__^
+         \\  (oo)\\_______
+            (__)\\       )\\/\\
+                ||----w |
+                ||     ||`, "font-family:monospace");
 
     // Ação de clique que vai validar a cor escolhida pelo usuário
     var qtdVidas = 4;
     document.querySelectorAll('.span-nome-cor').forEach(function (element) {
         element.addEventListener('click', function () {
-            // escolha do usuário
+            // verifica a escolha do usuário
             if (element.textContent === localStorage.getItem('corEscolhidaPelaMaquina')) {
                 alert('Parabéns, você acertou!');
                 document.getElementById('body').style.backgroundColor = element.style.backgroundColor;
                 setTimeout(() => {
                     window.location.reload();
-                }, 3000);
+                }, 2000);
             } else {
                 qtdVidas--;
                 let tamanho = element.textContent > localStorage.getItem('corEscolhidaPelaMaquina') ? 'maior' : 'menor';
                 if (qtdVidas === 0) {
                     alert('Sinto muito, mas você perdeu...');
-                    window.close();
+                    qtdVidas = 4;
                 } else {
                     alert(
                         'Você errou!\n' +
